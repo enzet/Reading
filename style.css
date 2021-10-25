@@ -1,0 +1,21 @@
+div.main {padding: 50pt 20%; font-size: 18pt; font-family: "Cochin";}
+h1 {font-size: 55pt; text-align: center;}
+h2 {
+    font-size: 24pt; margin-top: 80pt; letter-spacing: 0.2em;
+    text-align: center;
+}
+p {text-indent: 20pt;}
+p.author {
+    text-align: center; text-indent: 0pt;
+    padding-bottom: 50pt;
+    font-style: italic;
+}
+p.comment {display: none;}
+div.side {
+    text-align: right;
+    font-family: "SF Pro"; font-size: 11pt;
+    font-variant-numeric: tabular-nums;
+    position: fixed; left: 10pt; top: 40%; width: 80pt;
+}
+div.side div {padding-bottom: 5pt;}
+#part {font-size: 24pt; font-weight: 200;}
