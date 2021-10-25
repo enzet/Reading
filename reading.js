@@ -1,13 +1,13 @@
-document.addEventListener('keydown', (e) => {
-  if (e.key == "j") {
+document.addEventListener('keydown', (keyEvent) => {
+  if (keyEvent.key == "j") {
     window.scroll(window.scrollX, window.scrollY + 100);
-  } else if (e.key == "k") {
+  } else if (keyEvent.key == "k") {
     window.scroll(window.scrollX, window.scrollY - 100);
   }
 });
 
 const parts = [
-  [1, ''],
+  [1, 'End'],
   [7 / 8, '⅞'],
   [5 / 6, '⅚'],
   [4 / 5, '⅘'],
@@ -24,17 +24,17 @@ const parts = [
   [1 / 8, '⅛'],
   [1 / 9, '⅑'],
   [1 / 10, '⅒'],
-  [0, ''],
+  [0, 'Start'],
 ]
 
-document.addEventListener('scroll', function(e) {
+document.addEventListener('scroll', function(scrollEvent) {
   const scrollPosition = window.scrollY;
   const innerHeight = window.innerHeight;
   const scrollHeight = document.body.scrollHeight - innerHeight;
-  const rate = scrollPosition / scrollHeight;
+  const ratio = scrollPosition / scrollHeight;
 
-  if (rate > 1) {
-    rate = 1;
+  if (ratio > 1) {
+    ratio = 1;
   }
 
   document.getElementById('pages').textContent = 
@@ -42,19 +42,18 @@ document.addEventListener('scroll', function(e) {
     + Math.ceil(scrollHeight / innerHeight) + ' p.';
 
   document.getElementById('percent').textContent = 
-    (rate * 100).toFixed(2) + ' %';
+    (ratio * 100).toFixed(2) + ' %';
 
   var part = '';
 
   for (var i = 0; i < parts.length; i++) {
-    [a, b] = parts[i];
-    if (rate >= a) {
-      part = b;
+    const [currentRatio, text] = parts[i];
+    if (ratio >= currentRatio) {
+      part = text;
       break;
     }
   }
   document.getElementById('part').textContent = part;
-
 });
 
 function startTime() {
