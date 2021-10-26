@@ -57,8 +57,7 @@ document.addEventListener('scroll', function(scrollEvent) {
 });
 
 function startTime() {
-  var today = new Date();
-  var time = today.toLocaleTimeString().substring(0, 5);
+  var time = new Date().toLocaleTimeString().substring(0, 5);
 
   document.getElementById('time').textContent = time;
     
@@ -68,3 +67,28 @@ function startTime() {
 }
 
 window.onload = startTime;
+
+function addZero(number) {
+  if (number > 10) {
+    return '' + number;
+  }
+  return '0' + number;
+}
+
+function getDate() {
+  today = new Date();
+  return addZero(today.getDate())
+    + '.' + addZero(today.getMonth())
+    + '.' + today.getFullYear()
+    + ' ' + addZero(today.getHours())
+    + ':' + addZero(today.getMinutes());
+}
+
+function track() {
+  event = '{'
+    + '"type": "read", '
+    + '"middle": "' + getDate() + '", '
+    + '"title": "' + document.getElementById('title').innerHTML + '", '
+    + '"to": "' + document.getElementById('percent').innerHTML + '"}'
+  console.debug(event);
+}
